@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String Breaker</title>
+  </head>
+  <body>
+    <input class="input" />
+    <button class="breakIt">Break It</button>
+    <div class="container"></div>
+
+    <script>
+      const input = document.querySelector(".input");
+      const breakIt = document.querySelector(".breakIt");
+      const container = document.querySelector(".container");
+
+      const breakString = (string, index = 0, result = "") => {
+        if (index === string.length) {
+          return result;
+        }
+        result += `<h1>${string[index]}</h1>`;
+        return breakString(string, index + 1, result);
+      };
+
+      breakIt.onclick = () => {
+        const result = breakString(input.value);
+        container.innerHTML = result;
+      };
+    </script>
+  </body>
+</html>

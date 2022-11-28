@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sumTwoInputs</title>
+  </head>
+  <body>
+    <h3>Enter a number in each field and click Submit to sum them</h3>
+    <input type="text" class="first-input" />
+    <input type="text" class="second-input" />
+    <button class="submit-button">Submit</button>
+    <script>
+      const input1 = document.querySelector(".first-input");
+      const input2 = document.querySelector(".second-input");
+      const submitButton = document.querySelector(".submit-button");
+      submitButton.onclick = () => {
+        const num1 = +input1.value;
+        const num2 = +input2.value;
+        alert(num1 + num2);
+      };
+    </script>
+  </body>
+</html>

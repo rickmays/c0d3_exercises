@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House of Primes</title>
+  </head>
+  <body>
+    <input type="number" class="input" />
+    <button class="start">Start</button>
+    <h1 class="display"></h1>
+    <script>
+      const input = document.querySelector(".input");
+      const start = document.querySelector(".start");
+      const display = document.querySelector(".display");
+      start.onclick = () => {
+        const result = getPrimes(input.value);
+        display.innerText = result;
+      };
+
+      const isPrime = (num, i = 3, limit = Math.floor(Math.sqrt(num))) => {
+        if (num === 2 || num === 3) return true;
+        if (num < 2 || num % 2 === 0) return false;
+        if (num % i === 0) return false;
+        if (i >= limit) return true;
+        return isPrime(num, (i += 2), limit);
+      };
+
+      const getPrimes = (
+        num,
+        test = 2,
+        result = "",
+        firstTimeNoComma = true
+      ) => {
+        if (num <= 1) return `There are no prime numbers below ${num}`;
+        if (num <= 2) return 2;
+        if (test - 1 >= num) {
+          return result;
+        }
+        if (isPrime(test)) {
+          if (firstTimeNoComma) {
+            result += `${test}`;
+            firstTimeNoComma = false;
+          } else {
+            result += `, ${test}`;
+          }
+        }
+        return getPrimes(num, test + 1, result, (firstTimeNoComma = false));
+      };
+    </script>
+  </body>
+</html>

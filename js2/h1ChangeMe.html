@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>h1 Change Me</title>
+  </head>
+  <body>
+    <h1 class="h1Element">Change Me</h1>
+    <input type="text" class="input" />
+    <button class="submitButton">Submit</button>
+    <script>
+      const h1Element = document.querySelector(".h1Element");
+      const input = document.querySelector(".input");
+      const submitButton = document.querySelector(".submitButton");
+      submitButton.onclick = () => {
+        h1Element.textContent = `
+          ${input.value}
+        `;
+      };
+    </script>
+  </body>
+</html>

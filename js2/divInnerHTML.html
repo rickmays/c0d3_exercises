@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>divInnerHTML</title>
+  </head>
+  <body>
+    <input type="text" class="inputText" />
+    <div class="container">
+      <button class="showButton">Show</button>
+      <script>
+        const box = document.querySelector(".container");
+        const input = document.querySelector(".inputText");
+        let button = document.querySelector(".showButton");
+        const prepareTheButton = () => {
+          box.innerHTML = `
+          <h1>${input.value}</h1>
+          <button class="showButton">Show</button>
+        `;
+          button = document.querySelector(".showButton");
+          button.onclick = prepareTheButton;
+        };
+        button.onclick = prepareTheButton;
+      </script>
+      <h1 class="heading"></h1>
+      <script>
+        const h1Element = document.querySelector(".heading");
+        h1Element.innerHTML =
+          "The hardest choices require the strongest wills.";
+      </script>
+    </div>
+  </body>
+</html>

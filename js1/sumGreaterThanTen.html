@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sum Greater Than Ten</title>
+  </head>
+  <body>
+    <h3>Enter two numbers then click Submit</h3>
+    <input type="text" class="input1" />
+    <input type="text" class="input2" />
+    <button class="submit1">Submit</button>
+    <script>
+      const input1 = document.querySelector(".input1");
+      const input2 = document.querySelector(".input2");
+      const submit1 = document.querySelector(".submit1");
+      submit1.onclick = () => {
+        const val1 = +input1.value;
+        const val2 = +input2.value;
+        alert(val1 + val2 > 10 ? true : false);
+      };
+    </script>
+  </body>
+</html>

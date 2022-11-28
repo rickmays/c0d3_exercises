@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>inputBoxWithButton</title>
+  </head>
+  <body>
+    <input class="only-odds-input" type="text" />
+    <button class="only-odds-button">Only Odds</button>
+    <script>
+      const inputButton = document.querySelector(".only-odds-button");
+      const onlyOddsInput = document.querySelector(".only-odds-input");
+      inputButton.onclick = () => {
+        const val = +onlyOddsInput.value;
+        if (val % 2 === 0) {
+          onlyOddsInput.value = 0;
+        }
+      };
+    </script>
+  </body>
+</html>

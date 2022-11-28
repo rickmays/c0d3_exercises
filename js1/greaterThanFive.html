@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greater than Five</title>
+  </head>
+  <body>
+    <h3>Enter a number then click Submit.</h3>
+    <input class="input1" type="text" />
+    <button class="button1">Submit</button>
+    <script>
+      const input1 = document.querySelector(".input1");
+      const button1 = document.querySelector(".button1");
+      button1.onclick = () => {
+        const val = +input1.value;
+        if (val > 5) {
+          alert("Big");
+        }
+      };
+    </script>
+  </body>
+</html>

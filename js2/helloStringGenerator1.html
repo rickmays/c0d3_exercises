@@ -1,0 +1,21 @@
+
+<input class="totalInput" />
+<button class="generate">Generate</button>
+<h1 class="display"></h1>
+
+<script>
+const totalInput = document.querySelector('.totalInput')
+const displayElement = document.querySelector('.display')
+const generateButton = document.querySelector('.generate')
+
+const addHello = (num, result="" ) => {
+  if (num <=0 ) return result
+  return addHello(num-1, result+'Hello')
+}
+
+generateButton.onclick = () => {
+  const result = addHello(+totalInput.value)
+  displayElement.innerText = result
+}
+</script>
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Start Cancel</title>
+  </head>
+  <body>
+    <div class="container"></div>
+    <script>
+      const startApp = () => {
+        const container = document.querySelector(".container");
+        container.innerHTML = `
+        <button class="startButton">Start</button>
+        `;
+        const startButton = document.querySelector(".startButton");
+        startButton.onclick = () => {
+          container.innerHTML = `
+	          <input class="input" type="text"/>
+	          <button class="cancelButton">Cancel</button>
+	        `;
+          const cancelButton = document.querySelector(".cancelButton");
+          cancelButton.onclick = startApp;
+        };
+      }
+      startApp();
+    </script>
+  </body>
+</html>
