@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delayed Typing</title>
+  </head>
+  <body>
+    <div class="display"></div>
+    <input class="input" type="text" />
+    <button class="typeIt">Type It</button>
+    <script>
+      const display = document.querySelector(".display");
+      const input = document.querySelector(".input");
+      const typeIt = document.querySelector(".typeIt");
+      typeIt.onclick = () => {
+        display.innerText = "";
+        delayType(input.value);
+      };
+
+      const delayType = (string) => {
+        let index = 0;
+        const intervalId = setInterval(() => {
+          if (index === string.length - 1) {
+            clearInterval(intervalId);
+            input.value = "";
+          }
+          display.innerText += string[index];
+          index += 1;
+        }, 200);
+      };
+    </script>
+  </body>
+</html>
