@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      div p {
+        margin: 0;
+      }
+    </style>
+    <title>Delayed Typing Page</title>
+  </head>
+  <body>
+    <input class="input" type="text" />
+    <button class="typeIt">Type It</button>
+    <div class="display"></div>
+    <div class="typedPage"></div>
+    <script>
+      const input = document.querySelector(".input");
+      const typeIt = document.querySelector(".typeIt");
+      const display = document.querySelector(".display");
+      const typedPage = document.querySelector(".typedPage");
+      let paragraph;
+      typeIt.onclick = () => {
+        delayType(input.value);
+        paragraph = "";
+      };
+
+      const delayType = (string) => {
+        // if nothing entered in input, exit
+        if (string.length === 0) return;
+        // otherwise, use setInterval loop to iterate through string
+        // displaying one letter at a time 200ms apart
+        let index = 0;
+        const intervalId = setInterval(() => {
+          if (index === string.length - 1) {
+            clearInterval(intervalId);
+            input.value = "";
+          }
+          display.innerHTML += string[index];
+          index += 1;
+          if (index === string.length) {
+            paragraph = string;
+            createParagraph();
+            display.innerHTML = "";
+          }
+        }, 200);
+      };
+
+      const createParagraph = () => {
+        // another option for this: typedPage.innerHTML = `<p>${paragraph}</p>`;
+        const para = document.createElement("p");
+        para.textContent = paragraph;
+        typedPage.insertBefore(para, typedPage.firstChild);
+      };
+    </script>
+  </body>
+</html>
