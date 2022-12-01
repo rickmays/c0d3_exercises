@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+  </head>
+  <body>
+    <div>
+      <button class="startButton">Start</button>
+      <button class="pauseButton">Pause</button>
+      <button class="stopButton">Stop</button>
+      <h1><span class="display"></span></h1>
+    </div>
+    <script>
+      const display = document.querySelector(".display");
+      let milliseconds = 0;
+      display.innerText = milliseconds;
+      let running = false;
+
+      const stopwatch = () => {
+        const startButton = document.querySelector(".startButton");
+        startButton.onclick = () => {
+          running = true;
+          startButton.disabled = true;
+          timer();
+        };
+        const pauseButton = document.querySelector(".pauseButton");
+        pauseButton.onclick = () => {
+          running = false;
+          startButton.disabled = false;
+        };
+        const stopButton = document.querySelector(".stopButton");
+        stopButton.onclick = () => {
+          running = false;
+          startButton.disabled = false;
+          milliseconds = 0;
+          display.innerText = milliseconds;
+        };
+      };
+
+      const timer = () => {
+        const intervalId = setInterval(() => {
+          if (!running) {
+            running = true;
+            clearInterval(intervalId);
+          } else {
+            milliseconds += 1;
+            display.innerText = milliseconds / 100;
+          }
+        }, 10);
+      };
+
+      stopwatch();
+    </script>
+  </body>
+</html>
