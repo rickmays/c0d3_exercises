@@ -12,7 +12,7 @@
     <title>Delayed Typing Page</title>
   </head>
   <body>
-    <input class="input" type="text" />
+    <input class="input" type="text" autofocus />
     <button class="typeIt">Type It</button>
     <div class="display"></div>
     <div class="typedPage"></div>
@@ -25,6 +25,7 @@
       typeIt.onclick = () => {
         delayType(input.value);
         paragraph = "";
+        input.focus();
       };
 
       const delayType = (string) => {
