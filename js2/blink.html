@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashing Text</title>
+  </head>
+  <body>
+    <label for="textInput">Text to Flash</label>
+    <input type="text" id="textInput" /><br />
+    <label for="speedInput">Flashing Speed (per second)</label>
+    <input type="number" id="speedInput" /><br />
+    <div id="display"></div>
+
+    <script>
+      const display = document.getElementById("display");
+      const textInput = document.getElementById("textInput");
+      const speedInput = document.getElementById("speedInput");
+      const flashText = textInput.value;
+
+      let hideText = false;
+
+      const blink = () => {
+        let text = textInput.value;
+        if (hideText) {
+          text = "";
+        }
+        display.innerText = text;
+        hideText = !hideText;
+        const flashSpeed = Number(speedInput.value) || 3;
+        setTimeout(blink, 1000 / flashSpeed);
+      };
+
+      blink();
+    </script>
+  </body>
+</html>
