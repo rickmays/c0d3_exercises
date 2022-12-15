@@ -18,3 +18,31 @@ describe("selectiveZero function", () => {
     expect(arr).toEqual(original);
   });
 });
+describe("largest function", () => {
+  it("should find the largest of 3 numbers", () => {
+    const result = fn.largest([5, 3, 9]);
+    expect(result).toEqual(9);
+  });
+  it("should find the largest of 4 negative numbers", () => {
+    const result = fn.largest([-20, -2, -5, -10]);
+    expect(result).toEqual(-2);
+  });
+  it("should return undefined on an empty array", () => {
+    expect(fn.largest([])).toEqual(undefined);
+  });
+});
+
+describe("firstXToZero function", () => {
+  it("should change 3 numbers to 0", () => {
+    const result = fn.firstXToZero([0, 5, 9, 6], 3);
+    expect(result).toEqual([0, 0, 0, 6]);
+  });
+  it("should not modify the array when changing 0 elements", () => {
+    const result = fn.firstXToZero(["Don't", "change", "me"], 0);
+    expect(result).toEqual(["Don't", "change", "me"]);
+  });
+  it("should change all to zero when X beyond array length", () => {
+    const result = fn.firstXToZero([1, 2, 3], 4);
+    expect(result).toEqual([0, 0, 0]);
+  });
+});
