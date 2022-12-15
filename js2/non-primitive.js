@@ -24,9 +24,7 @@ const firstXToZero = (arr, x, i = 0) => {
   if (i === x || i === arr.length) {
     return arr;
   }
-  if (i < x) {
-    arr[i] = 0;
-  }
+  arr[i] = 0;
   return firstXToZero(arr, x, i + 1);
 };
 
