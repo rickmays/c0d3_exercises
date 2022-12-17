@@ -28,7 +28,105 @@ const firstXToZero = (arr, x, i = 0) => {
   return firstXToZero(arr, x, i + 1);
 };
 
+const isPrime = (num, i = 3, limit = Math.floor(Math.sqrt(num))) => {
+  if (num === 2 || num === 3) return true;
+  if (num < 2 || num % 2 === 0) return false;
+  if (num % i === 0) return false;
+  if (i >= limit) return true;
+  return isPrime(num, (i += 2), limit);
+};
+
+const allPrime = (arr, element = arr.length - 1) => {
+  if (element <= 0) {
+    return true;
+  }
+  if (!isPrime(arr[element])) {
+    return false;
+  }
+  return allPrime(arr, element - 1);
+};
+
+const increasing = (arr, i = 1) => {
+  if (i >= arr.length) {
+    return true;
+  }
+  if (arr[i] <= arr[i - 1]) {
+    return false;
+  }
+  return increasing(arr, i + 1);
+};
+
+const copyArray = (arr, newArr = []) => {
+  if (newArr.length === arr.length) {
+    return newArr;
+  }
+  newArr.push(arr[newArr.length]);
+  return copyArray(arr, newArr);
+};
+
+const removeElement = (a, str, i = 0) => {
+  if (i >= a.length) {
+    return a;
+  }
+  if (a[i] === str) {
+    a.splice(i, 1);
+    i--;
+  }
+  return removeElement(a, str, i + 1);
+};
+
+const copyWithout = (arr, num, newArr = [], i = 0) => {
+  if (i >= arr.length) {
+    return newArr;
+  }
+  if (arr[i] !== num) {
+    newArr.push(arr[i]);
+  }
+  return copyWithout(arr, num, newArr, i + 1);
+};
+
+const copyReverse = (arr, newArr = []) => {
+  if (newArr.length === arr.length) {
+    return newArr;
+  }
+  newArr.unshift(arr[newArr.length]);
+  return copyReverse(arr, newArr);
+};
+
+const copyLast = (arr, skipNum, i = skipNum, newArr = []) => {
+  if (i >= arr.length) {
+    return newArr;
+  }
+  newArr.push(arr[i]);
+  return copyLast(arr, skipNum, i + 1, newArr);
+};
+
+const copyFirst = (arr, skipNum, i = 0, newArr = []) => {
+  if (i >= arr.length - skipNum) {
+    return newArr;
+  }
+  newArr.push(arr[i]);
+  return copyFirst(arr, skipNum, i + 1, newArr);
+};
+
+const runOnEach = (arr, fun, i = 0, newArr = []) => {
+  if (i >= arr.length) {
+    return newArr;
+  }
+  newArr.push(fun(arr[i], i));
+  return runOnEach(arr, fun, i + 1, newArr);
+};
+
 allFuns.selectiveZero = selectiveZero;
 allFuns.largest = largest;
 allFuns.firstXToZero = firstXToZero;
+allFuns.allPrime = allPrime;
+allFuns.increasing = increasing;
+allFuns.copyArray = copyArray;
+allFuns.removeElement = removeElement;
+allFuns.copyWithout = copyWithout;
+allFuns.copyReverse = copyReverse;
+allFuns.copyLast = copyLast;
+allFuns.copyFirst = copyFirst;
+allFuns.runOnEach = runOnEach;
 module.exports = allFuns;
