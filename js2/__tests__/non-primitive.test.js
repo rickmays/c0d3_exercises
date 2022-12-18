@@ -182,45 +182,67 @@ describe("copyLast function", () => {
   });
 });
 
-describe('copyFirst function', () => {
-  const heroes = ['Ironman', 'Thor', 'Captain', 'Black Widow', 'Hulk']
-  const original = [...heroes]
-  it('should skip the last 2 elements', () => {
-    const result = fn.copyFirst(heroes, 2)
-    expect(result).toEqual(['Ironman', 'Thor', 'Captain'])
-  })
-  it('should not modify original array', () => {
-    fn.copyFirst(heroes, 2)
-    expect(heroes).toEqual(original)
-  })
-  it('should skip the last 0 elements (copy whole array)', () => {
-    const result = fn.copyFirst(heroes, 0)
-    expect(result).toEqual(heroes)
-  })
-  it('should return empty array if skipping past array length', () => {
-    const result = fn.copyFirst(heroes, 6)
-    expect(result).toEqual([])
-  })
-})
+describe("copyFirst function", () => {
+  const heroes = ["Ironman", "Thor", "Captain", "Black Widow", "Hulk"];
+  const original = [...heroes];
+  it("should skip the last 2 elements", () => {
+    const result = fn.copyFirst(heroes, 2);
+    expect(result).toEqual(["Ironman", "Thor", "Captain"]);
+  });
+  it("should not modify original array", () => {
+    fn.copyFirst(heroes, 2);
+    expect(heroes).toEqual(original);
+  });
+  it("should skip the last 0 elements (copy whole array)", () => {
+    const result = fn.copyFirst(heroes, 0);
+    expect(result).toEqual(heroes);
+  });
+  it("should return empty array if skipping past array length", () => {
+    const result = fn.copyFirst(heroes, 6);
+    expect(result).toEqual([]);
+  });
+});
 
-describe('copyWithCall function', () => {
-  const heroes = ['Ironman', 'Thor', 'Captain']
+describe("copyWithCall function", () => {
+  const heroes = ["Ironman", "Thor", "Captain"];
   const thanos = () => {
-    return 'Thanos'
-  }
-  it('should call a function with two arguments', () => {
+    return "Thanos";
+  };
+  it("should call a function with two arguments", () => {
     const result = fn.runOnEach([1, 2, 3, 4, 5], (e, i) => {
-      return e + i
-    })
-    expect(result).toEqual([1, 3, 5, 7, 9])
-  })
-  it('should not modify original array', () => {
-    const original = [...heroes]
-    fn.runOnEach(heroes, thanos)
-    expect(heroes).toEqual(original)
-  })
-  it('should call a function with no arguments', () => {
-    const result = fn.runOnEach(heroes, thanos)
-    expect(result).toEqual(['Thanos', 'Thanos', 'Thanos'])
-  })
-})
+      return e + i;
+    });
+    expect(result).toEqual([1, 3, 5, 7, 9]);
+  });
+  it("should not modify original array", () => {
+    const original = [...heroes];
+    fn.runOnEach(heroes, thanos);
+    expect(heroes).toEqual(original);
+  });
+  it("should call a function with no arguments", () => {
+    const result = fn.runOnEach(heroes, thanos);
+    expect(result).toEqual(["Thanos", "Thanos", "Thanos"]);
+  });
+});
+
+describe("onlyIndex function", () => {
+  const someNumbers = [
+    [1, 2, 3, 4, 5],
+    [6, 9, 8, 7, 6],
+    [4, 5, 6, 6, 7],
+    [0, 1, 2, 3, 4],
+  ];
+  it("should not modify the original array", () => {
+    const original = [...someNumbers];
+    fn.onlyIndex(someNumbers, 2);
+    expect(someNumbers).toEqual(original);
+  });
+  it("should pull out the element at index 2", () => {
+    const result = fn.onlyIndex(someNumbers, 2);
+    expect(result).toEqual([3, 8, 6, 2]);
+  });
+  it("should pull out the element at index 0", () => {
+    const result = fn.onlyIndex(someNumbers, 0);
+    expect(result).toEqual([1, 6, 4, 0]);
+  });
+});

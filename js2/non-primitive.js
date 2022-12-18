@@ -117,6 +117,12 @@ const runOnEach = (arr, fun, i = 0, newArr = []) => {
   return runOnEach(arr, fun, i + 1, newArr);
 };
 
+const onlyIndex = (arrayOfArrays, index, i = 0, arrayAtIndex = []) => {
+  if (i >= arrayOfArrays.length) return arrayAtIndex;
+  arrayAtIndex.push(arrayOfArrays[i][index]);
+  return onlyIndex(arrayOfArrays, index, i + 1, arrayAtIndex);
+};
+
 allFuns.selectiveZero = selectiveZero;
 allFuns.largest = largest;
 allFuns.firstXToZero = firstXToZero;
@@ -129,4 +135,5 @@ allFuns.copyReverse = copyReverse;
 allFuns.copyLast = copyLast;
 allFuns.copyFirst = copyFirst;
 allFuns.runOnEach = runOnEach;
+allFuns.onlyIndex = onlyIndex;
 module.exports = allFuns;
