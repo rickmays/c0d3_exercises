@@ -123,6 +123,18 @@ const onlyIndex = (arrayOfArrays, index, i = 0, arrayAtIndex = []) => {
   return onlyIndex(arrayOfArrays, index, i + 1, arrayAtIndex);
 };
 
+const oddToZero = arr => {
+  return arr.map(el => {
+    return el % 2 !== 0 ? 0 : el;
+  });
+};
+
+const firstLetters = stringArray => {
+  return stringArray.map(word => {
+    return word[0];
+  });
+};
+
 allFuns.selectiveZero = selectiveZero;
 allFuns.largest = largest;
 allFuns.firstXToZero = firstXToZero;
@@ -136,4 +148,6 @@ allFuns.copyLast = copyLast;
 allFuns.copyFirst = copyFirst;
 allFuns.runOnEach = runOnEach;
 allFuns.onlyIndex = onlyIndex;
+allFuns.oddToZero = oddToZero;
+allFuns.firstLetters = firstLetters;
 module.exports = allFuns;

@@ -246,3 +246,33 @@ describe("onlyIndex function", () => {
     expect(result).toEqual([1, 6, 4, 0]);
   });
 });
+
+describe("oddToZero function", () => {
+  it("should zero when some elements are odd", () => {
+    const result = fn.oddToZero([1, 2, 3, 4, 5]);
+    expect(result).toEqual([0, 2, 0, 4, 0]);
+  });
+  it("should zero when all elements are odd", () => {
+    const result = fn.oddToZero([1, 3]);
+    expect(result).toEqual([0, 0]);
+  });
+  it("should return same array when no elements are odd", () => {
+    const result = fn.oddToZero([8, 10, 12]);
+    expect(result).toEqual([8, 10, 12]);
+  });
+});
+
+describe("firstLetters function", () => {
+  it("should grab the first letters from 5 strings", () => {
+    const result = fn.firstLetters(["hello", "my", "name", "is", "pikachu"]);
+    expect(result).toEqual(["h", "m", "n", "i", "p"]);
+  });
+  it("should grab the first letters from 3 strings", () => {
+    const result = fn.firstLetters(["JavaScript", "is", "awesome"]);
+    expect(result).toEqual(["J", "i", "a"]);
+  });
+  it("should return an empty array when given an empty array", () => {
+    const result = fn.firstLetters([]);
+    expect(result).toEqual([]);
+  });
+});
