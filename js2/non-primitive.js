@@ -28,12 +28,12 @@ const firstXToZero = (arr, x, i = 0) => {
   return firstXToZero(arr, x, i + 1);
 };
 
-const isPrime = (num, i = 3, limit = Math.floor(Math.sqrt(num))) => {
-  if (num === 2 || num === 3) return true;
+const isPrime = num => {
+  if (num === 2) return true;
   if (num < 2 || num % 2 === 0) return false;
-  if (num % i === 0) return false;
-  if (i >= limit) return true;
-  return isPrime(num, (i += 2), limit);
+  if (num < 9) return true;
+  if (num % 3 === 0) return false;
+  return true;
 };
 
 const allPrime = (arr, element = arr.length - 1) => {
@@ -135,6 +135,135 @@ const firstLetters = stringArray => {
   });
 };
 
+const firstXToZeroMap = (arr, x) => {
+  return arr.map((el, i) => {
+    if (i < x) {
+      return 0;
+    } else {
+      return el;
+    }
+  });
+};
+
+const nonPrimeToZero = arr => {
+  return arr.map(el => (isPrime(el) ? el : 0));
+};
+
+const append = (strArr, str) => {
+  return strArr.map(el => el + str);
+};
+
+const runOnEachMap = (arr, fun) => arr.map(fun);
+
+const clone = arr => arr.map(el => el);
+
+const noMoreEvens = arr => arr.filter(el => el % 2 !== 0);
+
+const removeEmpty = arr => arr.filter(el => el !== "");
+
+const primesOnly = arr => arr.filter(el => isPrime(el));
+
+const firstPrime = arr => arr.find(el => isPrime(el));
+
+const sum = arr => arr.reduce((acc, el) => acc + el, 0);
+
+const largestReduce = arr =>
+  arr.reduce((result, el) => {
+    if (el > result) {
+      return el;
+    }
+    return result;
+  }, arr[0]);
+
+const longest = arr =>
+  arr.reduce((acc, e) => {
+    if (e.length > acc.length) {
+      return e;
+    }
+    return acc;
+  }, arr[0]);
+
+const matches = (arr, str) =>
+  arr.reduce((acc, e) => {
+    if (e === str) {
+      acc++;
+    }
+    return acc;
+  }, 0);
+
+const combineLess5 = arr =>
+  arr.reduce((acc, e) => {
+    if (e.length < 5) {
+      acc += e;
+    }
+    return acc;
+  }, "");
+
+const largerThan5 = arr =>
+  arr.reduce((acc, e) => {
+    if (e > 5) {
+      acc.push(e);
+    }
+    return acc;
+  }, []);
+
+const largerThan5Filter = arr =>
+  arr.filter(e => {
+    return e > 5;
+  });
+
+Array.prototype.getEvens = function () {
+  return this.filter(e => {
+    if (e % 2 === 0) {
+      return e;
+    }
+  });
+};
+
+Array.prototype.arrSum = function () {
+  if (this.length === 0) {
+    return undefined;
+  }
+  return this.reduce((acc, e) => {
+    return acc + e;
+  });
+};
+
+Array.prototype.pad = function (n, str) {
+  if (n <= 0) {
+    return this;
+  }
+  this.push(str);
+  return this.pad(n - 1, str);
+};
+
+Array.prototype.fizzbuzz = function (i = 0) {
+  if (i >= this.length) {
+    return this;
+  }
+  if (this[i] % 15 === 0) this[i] = "fizzbuzz";
+  if (this[i] % 5 === 0) this[i] = "buzz";
+  if (this[i] % 3 === 0) this[i] = "fizz";
+  return this.fizzbuzz(i + 1);
+};
+
+Array.prototype.removeEvens = function (i = 0) {
+  if (i >= this.length) return this;
+  if (this[i] % 2 === 0) {
+    this.splice(i, 1);
+    return this.removeEvens(i);
+  }
+  return this.removeEvens(i + 1);
+};
+
+Array.prototype.getIterator = function () {
+  i = -1;
+  return () => {
+    i = i + 1;
+    return this[i % this.length];
+  };
+};
+
 allFuns.selectiveZero = selectiveZero;
 allFuns.largest = largest;
 allFuns.firstXToZero = firstXToZero;
@@ -150,4 +279,27 @@ allFuns.runOnEach = runOnEach;
 allFuns.onlyIndex = onlyIndex;
 allFuns.oddToZero = oddToZero;
 allFuns.firstLetters = firstLetters;
+allFuns.firstXToZeroMap = firstXToZeroMap;
+allFuns.nonPrimeToZero = nonPrimeToZero;
+allFuns.append = append;
+allFuns.runOnEachMap = runOnEachMap;
+allFuns.clone = clone;
+allFuns.noMoreEvens = noMoreEvens;
+allFuns.removeEmpty = removeEmpty;
+allFuns.primesOnly = primesOnly;
+allFuns.firstPrime = firstPrime;
+allFuns.sum = sum;
+allFuns.largestReduce = largestReduce;
+allFuns.longest = longest;
+allFuns.matches = matches;
+allFuns.combineLess5 = combineLess5;
+allFuns.largerThan5 = largerThan5;
+allFuns.largerThan5Filter = largerThan5Filter;
+allFuns.getEvens = Array.prototype.getEvens;
+allFuns.arrSum = Array.prototype.arrSum;
+allFuns.pad = Array.prototype.pad;
+allFuns.fizzbuzz = Array.prototype.fizzbuzz;
+allFuns.removeEvens = Array.prototype.removeEvens;
+allFuns.getIterator = Array.prototype.getIterator;
+
 module.exports = allFuns;
