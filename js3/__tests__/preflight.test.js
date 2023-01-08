@@ -44,3 +44,56 @@ describe("firstLongerThan function", () => {
     expect(result).toEqual(undefined);
   });
 });
+
+describe('getReturnValues function', () => {
+  const fn1 = () => {
+    return 25
+  }
+  const fn2 = () => {
+    return true
+  }
+  const fn3 = () => {
+    return 'Pikachu'
+  }
+  const fn4 = () => {
+    "I'm function four"
+  }
+
+  it('should get 3 return values of various types', () => {
+    const result = fn.getReturnValues([fn1, fn2, fn3])
+    expect(result).toEqual([25, true, 'Pikachu'])
+  })
+  it('should return an empty array if no functions', () => {
+    const result = fn.getReturnValues([])
+    expect(result).toEqual([])
+  })
+  it('should return undefined for functions with no return value', () => {
+    const result = fn.getReturnValues([fn4])
+    expect(result).toEqual([undefined])
+  })
+})
+
+describe('zeroSquare function', () => {
+  it('should create a 1x1 array of zeroes', () => {
+    const square1 = [[0]]
+    expect(fn.zeroSquare(1)).toEqual(square1)
+  })
+  it('should create a 1x1 array of zeroes', () => {
+    const square2 = [
+      [0, 0],
+      [0, 0]
+    ]
+    expect(fn.zeroSquare(2)).toEqual(square2)
+  })
+  it('should create a 1x1 array of zeroes', () => {
+    const square3 = [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0]
+    ]
+    expect(fn.zeroSquare(3)).toEqual(square3)
+  })
+  it('should return an empty array for 0 value', () => {
+    expect(fn.zeroSquare(0)).toEqual([])
+  })
+})
