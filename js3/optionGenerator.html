@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Dynamic Option Generator</title>
+</head>
+<body>
+  <h1>Add Option</h1>
+  <input class="input" type="text"/>
+  <button class="addButton">Add</button>
+  <select class="selectContainer"></select>
+  <script>
+    const input = document.querySelector(".input");
+    const addButton = document.querySelector(".addButton");
+    const select = document.querySelector(".selectContainer");
+    const options = [];
+    addButton.onclick = () => {
+      const option = input.value;
+      input.value = ''; 
+      options.push(option);
+      select.innerHTML = options.map((el) => {
+        return `<option value=${el}>${el}</option>`
+      })
+    }
+    // addButton.onclick = () => {
+    //   const option = `<option${input.value}>${input.value}</option`;
+    //   select.innerHTML += option;
+    //   input.value = '';
+    // }
+  </script>
+</body>
+</html>
