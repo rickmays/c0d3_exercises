@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todo List</title>
+</head>
+<body>
+  <h1>ToDo List</h1>
+  <input class="input" type="text"/>
+  <button class="button">Add</button>
+  <div class="list"></div>
+  <script>
+    const input = document.querySelector(".input");
+    const button = document.querySelector(".button");
+    const list = document.querySelector(".list");
+    const todoArray = [];
+    button.onclick = () => {
+      if (input.value) {
+        const todo = input.value;
+        todoArray.push(todo);
+        list.innerHTML = todoArray.map((el) => {
+          return `<h2>${el}</h2>`;
+        }).join('');
+      }
+
+    }
+  </script>
+</body>
+</html>
