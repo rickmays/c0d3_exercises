@@ -15,23 +15,34 @@
       const input = document.querySelector(".input");
       const button = document.querySelector(".button");
       const list = document.querySelector(".list");
-      const todoArray = [];
+
+      // First grab what's already in local storage
+      // We use || '[]' to start an array for the first time
+      //   because getItem will return null
+      const lsData = localStorage.getItem("todoData") || "[]";
+
+      // Turn string into an array and initial render of todos
+      const todoArray = JSON.parse(lsData);
+      renderTodos();
+
       button.onclick = () => {
         if (input.value) {
           const todo = input.value;
+          input.value = "";
           todoArray.push(todo);
-          outputTodos();
+          setLocalStorage();
+          renderTodos();
           addOnclick();
         }
       };
 
-      function outputTodos() {
+      function renderTodos() {
         list.innerHTML = todoArray
-          .map((el) => {
+          .map(el => {
             return `<h2>${el}</h2>`;
           })
           .join("");
-          addOnclick();
+        addOnclick();
       }
 
       function addOnclick() {
@@ -40,9 +51,15 @@
           (todo, i) =>
             (todo.onclick = () => {
               todoArray.splice(i, 1);
-              outputTodos();
+              setLocalStorage();
+              renderTodos();
             })
         );
+      }
+
+      function setLocalStorage() {
+        // Store it back, turning it into a string on the way
+        localStorage.setItem("todoData", JSON.stringify(todoArray));
       }
     </script>
   </body>
