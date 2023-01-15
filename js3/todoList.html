@@ -8,13 +8,22 @@
   </head>
   <body>
     <h1>ToDo List</h1>
-    <input class="input" type="text" />
-    <button class="button">Add</button>
+    <span>
+      <input class="input" type="text" />
+      <button class="addButton">Add</button>
+    </span>
+    <span>
+      <input class="filter" type="text" />
+      <button class="filterButton">Filter</button>
+    </span>
     <div class="list"></div>
     <script>
       const input = document.querySelector(".input");
-      const button = document.querySelector(".button");
+      const addButton = document.querySelector(".addButton");
       const list = document.querySelector(".list");
+      const filter = document.querySelector(".filter");
+      const filterButton = document.querySelector(".filterButton");
+      let filterText = "";
 
       // First grab what's already in local storage
       // We use || '[]' to start an array for the first time
@@ -25,7 +34,7 @@
       const todoArray = JSON.parse(lsData);
       renderTodos();
 
-      button.onclick = () => {
+      addButton.onclick = () => {
         if (input.value) {
           const todo = input.value;
           input.value = "";
@@ -36,17 +45,27 @@
         }
       };
 
+      filterButton.onclick = () => {
+        if (filter.value) {
+          filterText = filter.value;
+        } else {
+          filterText = "";
+        }
+        renderTodos();
+      };
+
       function renderTodos() {
         list.innerHTML = todoArray
+          .filter(todo => todo.includes(filterText))
           .map(el => {
-            return `<h2>${el}</h2>`;
+            return `<h2 class="todo">${el}</h2>`;
           })
           .join("");
         addOnclick();
       }
 
       function addOnclick() {
-        const todos = document.querySelectorAll("h2");
+        const todos = document.querySelectorAll(".todo");
         todos.forEach(
           (todo, i) =>
             (todo.onclick = () => {
